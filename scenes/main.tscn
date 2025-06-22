@@ -1,0 +1,155 @@
+[gd_scene load_steps=17 format=3 uid="uid://dk0oopek502gp"]
+
+[ext_resource type="Script" uid="uid://rfffc6rllv1c" path="res://src/main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cfwiwynliprfw" path="res://scenes/wall.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bjb5tat038hi" path="res://src/MinerMananger.gd" id="2_tefeu"]
+[ext_resource type="Resource" uid="uid://p3o8cubcf6h4" path="res://config/AscensionData.tres" id="2_trceg"]
+[ext_resource type="Script" uid="uid://b1ysvmycloe3o" path="res://src/MageMananger.gd" id="3_choun"]
+[ext_resource type="Script" uid="uid://c8rdn5x6chgfd" path="res://src/GoldTrigger.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://c7rqwosejbbm6" path="res://src/MinerContainer.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://0si3kfnq6ujr" path="res://src/GridOverlay.gd" id="4_eb6dy"]
+[ext_resource type="Script" uid="uid://yxc5ytfpseue" path="res://src/BuyMinerButton.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://sfix2llcpla" path="res://scenes/MageVisual.tscn" id="6_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dejdrq42y42pl" path="res://scenes/MinerVisual.tscn" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://d08t2af6gubd" path="res://src/MageContainer.gd" id="6_ya4ey"]
+[ext_resource type="Script" uid="uid://d1ft181dose38" path="res://src/BuyMageButton.gd" id="9_choun"]
+[ext_resource type="Script" uid="uid://dusf8ljsutw7o" path="res://src/AscendButton.gd" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://daymswb5yikcu" path="res://src/BombButton.gd" id="15_jkv2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(960, 775)
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("ascend_text", "layer_text", "gold_text", "miner_text", "pickaxe_text", "hint_text")]
+script = ExtResource("1_ig7tw")
+ascension_data = ExtResource("2_trceg")
+ascend_text = NodePath("UIArea/MenuPanel/DisplayArea/AscendText")
+layer_text = NodePath("UIArea/MenuPanel/DisplayArea/LayerText")
+gold_text = NodePath("UIArea/MenuPanel/DisplayArea/GoldText")
+miner_text = NodePath("UIArea/MenuPanel/DisplayArea/MinerText")
+pickaxe_text = NodePath("UIArea/MenuPanel/DisplayArea/PickaxeText")
+hint_text = NodePath("UIArea/MenuPanel/DisplayArea/HintText")
+
+[node name="MinerMananger" type="Node" parent="." node_paths=PackedStringArray("wall")]
+script = ExtResource("2_tefeu")
+wall = NodePath("../GameArea/Wall")
+
+[node name="MageMananger" type="Node" parent="." node_paths=PackedStringArray("miner_mananger", "mage_container")]
+script = ExtResource("3_choun")
+miner_mananger = NodePath("../MinerMananger")
+mage_container = NodePath("../GameArea/MageContainer")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+metadata/_edit_lock_ = true
+
+[node name="GameArea" type="Node2D" parent="."]
+
+[node name="GridOverlay" type="Node2D" parent="GameArea"]
+script = ExtResource("4_eb6dy")
+
+[node name="Wall" parent="GameArea" groups=["theme_receivers"] instance=ExtResource("2_0xm2m")]
+position = Vector2(480, 770)
+
+[node name="GoldTrigger" type="Area2D" parent="GameArea"]
+script = ExtResource("3_h2yge")
+
+[node name="GoldTriggerArea" type="CollisionShape2D" parent="GameArea/GoldTrigger"]
+position = Vector2(480, 385)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="MageContainer" type="Node2D" parent="GameArea"]
+position = Vector2(480, 650)
+script = ExtResource("6_ya4ey")
+
+[node name="MageVisual" parent="GameArea/MageContainer" instance=ExtResource("6_85g3d")]
+visible = false
+position = Vector2(-169.554, -288.958)
+
+[node name="MinerContainer" type="Node2D" parent="GameArea"]
+position = Vector2(480, 730)
+script = ExtResource("4_1bvp3")
+
+[node name="MinerVisual" parent="GameArea/MinerContainer" instance=ExtResource("6_o6xl0")]
+visible = false
+
+[node name="UIArea" type="CanvasLayer" parent="."]
+
+[node name="MenuPanel" type="VBoxContainer" parent="UIArea" groups=["theme_receivers"]]
+offset_left = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="DisplayArea" type="VBoxContainer" parent="UIArea/MenuPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AscendText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "飛昇次數：%d"
+
+[node name="LayerText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "目前層數：%d"
+
+[node name="GoldText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "目前黃金：%d"
+
+[node name="MinerText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "礦工數量：%d"
+
+[node name="PickaxeText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "持有稿元：%d"
+
+[node name="BuyMinerButton" type="Button" parent="UIArea/MenuPanel/DisplayArea" node_paths=PackedStringArray("miner_manager")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "雇用礦工（%dG）金"
+alignment = 0
+script = ExtResource("5_tbgi4")
+miner_manager = NodePath("../../../../MinerMananger")
+
+[node name="BuyMageButton" type="Button" parent="UIArea/MenuPanel/DisplayArea" node_paths=PackedStringArray("mage_manager", "main")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "雇用礦工（%dG）金"
+alignment = 0
+script = ExtResource("9_choun")
+mage_manager = NodePath("../../../../MageMananger")
+main = NodePath("../../../..")
+
+[node name="AscendButton" type="Button" parent="UIArea/MenuPanel/DisplayArea" node_paths=PackedStringArray("main")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "達到%d層可飛昇"
+alignment = 0
+script = ExtResource("14_a8y0u")
+main = NodePath("../../../..")
+ascension_data = ExtResource("2_trceg")
+
+[node name="BombButton" type="Button" parent="UIArea/MenuPanel/DisplayArea" node_paths=PackedStringArray("wall", "main")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "炸彈(%.2f%% 金)"
+alignment = 0
+script = ExtResource("15_jkv2x")
+wall = NodePath("../../../../GameArea/Wall")
+main = NodePath("../../../..")
+
+[node name="HintText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "我是小提示"
+
+[node name="ControlPanel" type="HBoxContainer" parent="UIArea/MenuPanel" groups=["theme_receivers"]]
+layout_mode = 2

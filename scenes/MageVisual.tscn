@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://sfix2llcpla"]
+
+[ext_resource type="Script" uid="uid://b7d68uqvvwhhf" path="res://src/MageVisual.gd" id="1_h40gp"]
+[ext_resource type="Shader" uid="uid://uemhqjvc08od" path="res://shaders/MinerVisual.gdshader" id="2_3ukae"]
+[ext_resource type="Texture2D" uid="uid://ddj7jpb0qvf0a" path="res://assets/mage0.png" id="3_3ukae"]
+[ext_resource type="Texture2D" uid="uid://c7guy63dndmny" path="res://assets/mage1.png" id="4_rvs3c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7tar"]
+shader = ExtResource("2_3ukae")
+shader_parameter/highlight_color = Color(1, 0.0392157, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dhxy"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("3_3ukae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rvs3c")
+}],
+"loop": true,
+"name": &"move",
+"speed": 2.0
+}]
+
+[node name="MageVisual" type="Node2D" groups=["theme_receivers"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_h40gp")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y7tar")
+sprite_frames = SubResource("SpriteFrames_2dhxy")
+animation = &"move"
+frame_progress = 0.212726

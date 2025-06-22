@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="ColorThemeConfig" load_steps=13 format=3 uid="uid://bte3uqak1hxos"]
+
+[ext_resource type="Script" uid="uid://dyy0lk12clyeq" path="res://themes/ColorSet.gd" id="1_5v3nl"]
+[ext_resource type="Script" uid="uid://b2obn1vf7nwd8" path="res://themes/ColorThemeConfig.gd" id="1_rgd53"]
+
+[sub_resource type="Resource" id="Resource_5v3nl"]
+script = ExtResource("1_5v3nl")
+name = "black"
+bg = Color(0, 0, 0, 1)
+hl = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="Resource" id="Resource_cxu5l"]
+script = ExtResource("1_5v3nl")
+name = "red"
+bg = Color(0.33, 0, 0, 1)
+hl = Color(1, 0.33, 0.33, 1)
+
+[sub_resource type="Resource" id="Resource_cvc44"]
+script = ExtResource("1_5v3nl")
+name = "peach"
+bg = Color(0.4, 0.2, 0.2, 1)
+hl = Color(1, 0.73, 0.6, 1)
+
+[sub_resource type="Resource" id="Resource_k358e"]
+script = ExtResource("1_5v3nl")
+name = "orange"
+bg = Color(0.4, 0.2, 0, 1)
+hl = Color(1, 0.67, 0.33, 1)
+
+[sub_resource type="Resource" id="Resource_laynt"]
+script = ExtResource("1_5v3nl")
+name = "yellow"
+bg = Color(0.4, 0.4, 0, 1)
+hl = Color(1, 1, 0.33, 1)
+
+[sub_resource type="Resource" id="Resource_5n1q8"]
+script = ExtResource("1_5v3nl")
+name = "cyan"
+bg = Color(0, 0.33, 0.33, 1)
+hl = Color(0.33, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_y2gma"]
+script = ExtResource("1_5v3nl")
+name = "green"
+bg = Color(0, 0.2, 0, 1)
+hl = Color(0.33, 1, 0.33, 1)
+
+[sub_resource type="Resource" id="Resource_b60vg"]
+script = ExtResource("1_5v3nl")
+name = "blue"
+bg = Color(0, 0, 0.33, 1)
+hl = Color(0.33, 0.33, 1, 1)
+
+[sub_resource type="Resource" id="Resource_sbat2"]
+script = ExtResource("1_5v3nl")
+name = "purple"
+bg = Color(0.2, 0, 0.2, 1)
+hl = Color(0.67, 0.33, 1, 1)
+
+[sub_resource type="Resource" id="Resource_pi8kj"]
+script = ExtResource("1_5v3nl")
+name = "white"
+bg = Color(0.87, 0.87, 0.87, 1)
+hl = Color(0, 0, 0, 1)
+
+[resource]
+script = ExtResource("1_rgd53")
+color_sets = Array[ExtResource("1_5v3nl")]([SubResource("Resource_5v3nl"), SubResource("Resource_cxu5l"), SubResource("Resource_cvc44"), SubResource("Resource_k358e"), SubResource("Resource_laynt"), SubResource("Resource_5n1q8"), SubResource("Resource_y2gma"), SubResource("Resource_b60vg"), SubResource("Resource_sbat2"), SubResource("Resource_pi8kj")])

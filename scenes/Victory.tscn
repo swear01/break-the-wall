@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bcx2rf1w78keq"]
+
+[node name="Victory" type="Node2D"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 200
+text = "恭喜破關！"

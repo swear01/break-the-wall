@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejdrq42y42pl"]
+
+[ext_resource type="Shader" uid="uid://uemhqjvc08od" path="res://shaders/MinerVisual.gdshader" id="1_6yca6"]
+[ext_resource type="Script" uid="uid://bycl2fas4e687" path="res://src/MinerVisual.gd" id="1_y7tar"]
+[ext_resource type="Texture2D" uid="uid://cbbi8iwfd7nkg" path="res://assets/miner.png" id="3_hvt3a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7tar"]
+shader = ExtResource("1_6yca6")
+shader_parameter/highlight_color = Color(1, 0.0392157, 0, 1)
+
+[node name="MinerVisual" type="Node2D" groups=["theme_receivers"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_y7tar")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y7tar")
+texture = ExtResource("3_hvt3a")

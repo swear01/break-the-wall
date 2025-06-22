@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AscensionData" load_steps=2 format=3 uid="uid://p3o8cubcf6h4"]
+
+[ext_resource type="Script" uid="uid://b47m0mcedw1mc" path="res://src/AscensionData.gd" id="1_4eype"]
+
+[resource]
+script = ExtResource("1_4eype")
+block_width_list = Array[int]([2, 5, 8, 14, 18])
+auto_click_speed_list = Array[float]([0.001, 5.0, 10.0, 20.0, 30.0])
+ascend_level_list = Array[int]([3, 5, 7, 9, 50])
+ascendsion_text = Array[String](["歡迎來到To The Abyss", "自動點擊已開放，請長按", "炸彈已開放", "加油快結束了", "終點就在前方"])
+enable_auto_click_at = 1
+enable_bomb_at = 2
+metadata/_custom_type_script = "uid://b47m0mcedw1mc"

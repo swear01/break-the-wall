@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfwiwynliprfw"]
+
+[ext_resource type="Script" uid="uid://cdasrnt1exea2" path="res://src/wall.gd" id="1_xxgf6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxgf6"]
+size = Vector2(960, 400)
+
+[node name="Wall" type="Area2D"]
+script = ExtResource("1_xxgf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 200)
+shape = SubResource("RectangleShape2D_xxgf6")
+
+[node name="BottomWall" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 75.0
+offset_right = 480.0
+offset_bottom = 375.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.509804, 0.509804, 0.509804, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_right = 480.0
+offset_bottom = 75.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Fill" type="ColorRect" parent="."]
+offset_left = -480.0
+offset_right = -80.0
+offset_bottom = 75.0
+mouse_filter = 2
+color = Color(0.509804, 0.509804, 0.509804, 1)
+
+[node name="HpLabel" type="Label" parent="."]
+offset_left = -480.0
+offset_right = -415.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 48
+text = "HP: 5/10"
+vertical_alignment = 1

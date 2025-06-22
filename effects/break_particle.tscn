@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bud4lufhes3vp"]
+
+[ext_resource type="Texture2D" uid="uid://rb6olw4as564" path="res://addons/kenney_particle_pack/fire_01.png" id="1_w5ggx"]
+
+[sub_resource type="Gradient" id="Gradient_w5ggx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.635294)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sbb2h"]
+gradient = SubResource("Gradient_w5ggx")
+
+[sub_resource type="Curve" id="Curve_sbb2h"]
+_data = [Vector2(0, 0.408846), 0.0, 0.0, 0, 0, Vector2(0.256757, 0.745977), 0.0, 0.0, 0, 0, Vector2(0.502703, 1), 0.0, 0.0, 0, 0, Vector2(0.786487, 0.62046), 0.0, 0.0, 0, 0, Vector2(1, 0.39134), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_nt08h"]
+curve = SubResource("Curve_sbb2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wt56a"]
+lifetime_randomness = 0.17
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 70, 1)
+angle_min = -180.0
+angle_max = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 800, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_nt08h")
+color_ramp = SubResource("GradientTexture1D_sbb2h")
+
+[node name="BreakParticle" type="GPUParticles2D"]
+emitting = false
+amount = 70
+texture = ExtResource("1_w5ggx")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_wt56a")

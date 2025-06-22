@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk0oopek502gp"]
+
+[ext_resource type="Script" uid="uid://rfffc6rllv1c" path="res://src/main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cfwiwynliprfw" path="res://scenes/wall.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://c8rdn5x6chgfd" path="res://src/GoldTrigger.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://c7rqwosejbbm6" path="res://src/MinerContainer.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://yxc5ytfpseue" path="res://src/BuyMinerButton.gd" id="5_tbgi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(960, 775)
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("layer_text", "gold_text")]
+script = ExtResource("1_ig7tw")
+layer_text = NodePath("UIArea/MenuPanel/DisplayArea/LayerText")
+gold_text = NodePath("UIArea/MenuPanel/DisplayArea/GoldText")
+
+[node name="MinerMananger" type="Node" parent="."]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+metadata/_edit_lock_ = true
+
+[node name="GameArea" type="Node2D" parent="."]
+
+[node name="Wall" parent="GameArea" groups=["theme_receivers"] instance=ExtResource("2_0xm2m")]
+position = Vector2(480, 770)
+
+[node name="GoldTrigger" type="Area2D" parent="GameArea"]
+script = ExtResource("3_h2yge")
+
+[node name="GoldTriggerArea" type="CollisionShape2D" parent="GameArea/GoldTrigger"]
+position = Vector2(480, 385)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="MinerContainer" type="Node2D" parent="GameArea"]
+script = ExtResource("4_1bvp3")
+
+[node name="UIArea" type="CanvasLayer" parent="."]
+
+[node name="MenuPanel" type="VBoxContainer" parent="UIArea" groups=["theme_receivers"]]
+offset_left = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="DisplayArea" type="VBoxContainer" parent="UIArea/MenuPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LayerText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "目前層數：%d"
+
+[node name="GoldText" type="Label" parent="UIArea/MenuPanel/DisplayArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "目前黃金：%d"
+
+[node name="BuyMinerButton" type="Button" parent="UIArea/MenuPanel/DisplayArea" node_paths=PackedStringArray("miner_manager")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "雇用礦工（%dG）金"
+alignment = 0
+script = ExtResource("5_tbgi4")
+miner_manager = NodePath("../../../../MinerMananger")
+
+[node name="ControlPanel" type="HBoxContainer" parent="UIArea/MenuPanel" groups=["theme_receivers"]]
+layout_mode = 2
